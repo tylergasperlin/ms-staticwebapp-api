@@ -56,3 +56,13 @@ This project is an Azure Functions app, that responds to GET, POST, PUT, and DEL
 - [Debugging Angular in VS Code](https://code.visualstudio.com/docs/nodejs/angular-tutorial?wt.mc_id=mslearn_staticwebapp-github-jopapa)
 - [Debugging React in VS Code](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial?wt.mc_id=mslearn_staticwebapp-github-jopapa)
 - [Debugging Vue in VS Code](https://code.visualstudio.com/docs/nodejs/vuejs-tutorial?wt.mc_id=mslearn_staticwebapp-github-jopapa)
+
+## Run SWA locally to debug auth
+
+The final port used by the SWA CLI is different than the one you've seen before, because it uses a reverse proxy to forward requests to the three different components:
+a. Your framework development server
+b. The authentication and authorization emulator
+c. The API hosted by the Functions runtime
+
+swa start http://localhost:3000 --api-location ./api
+
