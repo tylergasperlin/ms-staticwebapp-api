@@ -8,6 +8,7 @@ import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import app, { productSaga } from './store';
+import { SnackbarProvider } from 'notistack';
 
 // create and configure reduxer middleware ( saga is a middleware )
 const sagaMiddleware = createSagaMiddleware();
@@ -15,7 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   app,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
+  composeEnhancers(applyMiddleware(sagaMiddleware)),
 );
 
 sagaMiddleware.run(productSaga);
@@ -23,11 +24,13 @@ sagaMiddleware.run(productSaga);
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <SnackbarProvider maxSnack={3}>
+        <App />
+      </SnackbarProvider>
     </BrowserRouter>
   </Provider>,
 
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
