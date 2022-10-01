@@ -5,7 +5,6 @@ import { ListHeader, ModalYesNo } from '../components';
 import ProductDetail from './ProductDetail';
 import ProductList from './ProductList';
 import useProducts from './useProducts';
-import { useSnackbar } from 'notistack';
 
 const captains = console;
 
@@ -20,22 +19,7 @@ function Products({ history }) {
     selectProduct,
     selectedProduct,
     updateProduct,
-    error
   } = useProducts();
-
-  const { enqueueSnackbar } = useSnackbar();
-
-  const handleDisplayError = (error) => {
-      enqueueSnackbar(error, {
-        preventDuplicate: true
-      });
-  };
-
-  React.useEffect(() => {
-    if(error) {
-      handleDisplayError(error)
-    }
-  }, [error])
 
   useEffect(() => {
     getProducts();
@@ -87,8 +71,6 @@ function Products({ history }) {
     handleCancelProduct();
     getProducts();
   }
-
-
 
   return (
     <div className="content-container">
